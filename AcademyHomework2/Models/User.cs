@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AcademyHomework1
+namespace AcademyHomework2.Models
 {
-    class User
+    public class User
     {
+        [Required]
         public int Id { get; set; }
+        [Required]
         public DateTime CreatedAt { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Avatar { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public List<Post> Posts { get; set; } 
         public List<Todo> Todos { get; set; } 
 

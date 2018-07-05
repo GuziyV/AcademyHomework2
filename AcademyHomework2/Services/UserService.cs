@@ -12,43 +12,46 @@ namespace AcademyHomework2.Services
     {
         private HttpClient _client = new HttpClient();
 
-        static public List<User> Users;
+        static private List<User> _users;
 
         public UserService()
-        {        
-            string json = _client.GetStringAsync("https://5b128555d50a5c0014ef1204.mockapi.io/users").Result;
-            JArray _JArrayUsers = JArray.Parse(json);
-            var postsWithComments = GetAllPosts();
+        {
+            if (_users == null)
+            {
+                string json = _client.GetStringAsync("https://5b128555d50a5c0014ef1204.mockapi.io/users").Result;
+                JArray _JArrayUsers = JArray.Parse(json);
+                var postsWithComments = GetAllPosts();
 
-            var usersJoinPosts = _JArrayUsers.GroupJoin(
-                postsWithComments,
-                user => (int)user["id"],
-                post => post.UserId,
-                (user, posts) => new
-                {
-                    Id = (int)user["id"],
-                    CreatedAt = (DateTime)user["createdAt"],
-                    Name = (string)user["name"],
-                    Avatar = (string)user["avatar"],
-                    Email = (string)user["email"],
-                    Posts = posts.ToList()
-                });
+                var usersJoinPosts = _JArrayUsers.GroupJoin(
+                    postsWithComments,
+                    user => (int)user["id"],
+                    post => post.UserId,
+                    (user, posts) => new
+                    {
+                        Id = (int)user["id"],
+                        CreatedAt = (DateTime)user["createdAt"],
+                        Name = (string)user["name"],
+                        Avatar = (string)user["avatar"],
+                        Email = (string)user["email"],
+                        Posts = posts.ToList()
+                    });
 
-            var usersJoinTodo = usersJoinPosts.GroupJoin(
-                _JArrayTodos,
-                user => user.Id,
-                todo => (int)todo["userId"],
-                (user, todos) => new User
-                {
-                    Id = user.Id,
-                    CreatedAt = user.CreatedAt,
-                    Name = user.Name,
-                    Avatar = user.Avatar,
-                    Email = user.Email,
-                    Posts = user.Posts,
-                    Todos = new JArray(todos).ToObject<List<Todo>>().ToList()
-                });
-            Users = usersJoinTodo.ToList();      
+                var usersJoinTodo = usersJoinPosts.GroupJoin(
+                    _JArrayTodos,
+                    user => user.Id,
+                    todo => (int)todo["userId"],
+                    (user, todos) => new User
+                    {
+                        Id = user.Id,
+                        CreatedAt = user.CreatedAt,
+                        Name = user.Name,
+                        Avatar = user.Avatar,
+                        Email = user.Email,
+                        Posts = user.Posts,
+                        Todos = new JArray(todos).ToObject<List<Todo>>().ToList()
+                    });
+                _users = usersJoinTodo.ToList();
+            }
         }
 
         private IEnumerable<Post> GetAllPosts()
@@ -68,6 +71,11 @@ namespace AcademyHomework2.Services
                 Comments = new JArray(comments).ToObject<List<Comment>>().ToList()
             });
             return postJoinComments;
+        }
+
+        public List<User> GetAll()
+        {
+            return _users;
         }
 
         private JArray _JArrayPosts
@@ -99,7 +107,7 @@ namespace AcademyHomework2.Services
 
         private IEnumerable<Post> GetPostsById(int id)
         {
-            var posts = (from u in Users
+            var posts = (from u in _users
                          where u.Id == id
                          select u.Posts).First();
             return posts;
@@ -125,7 +133,7 @@ namespace AcademyHomework2.Services
         }
         public IEnumerable<(int, string)> GetCompletedTasksById(int id)
         {
-            var todos = (from u in Users
+            var todos = (from u in _users
                          where u.Id == id
                          select u.Todos).First();
 
@@ -139,7 +147,7 @@ namespace AcademyHomework2.Services
 
         public IEnumerable<User> GetSortedUsers()
         {
-            var sortedUsers = Users.GroupJoin(Users.SelectMany(u => u.Todos)
+            var sortedUsers = _users.GroupJoin(_users.SelectMany(u => u.Todos)
                 .OrderByDescending(todo => todo.Name.Length),
                 user => user.Id, todo => todo.UserId,
                 (user, todos) => new User
@@ -158,7 +166,7 @@ namespace AcademyHomework2.Services
 
         public (User, Post, int?, int, Post, Post) GetFirstStructure(int id)
         {
-            var user = Users.Where(u => u.Id == id).First();
+            var user = _users.Where(u => u.Id == id).First();
 
             var lastPost = user.Posts.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
 
@@ -185,7 +193,7 @@ namespace AcademyHomework2.Services
 
         public (Post, Comment, Comment, int?) GetSecondStructure(int id)
         {
-            var post = Users.SelectMany(u => u.Posts).Where(p => p.Id == id).First();
+            var post = _users.SelectMany(u => u.Posts).Where(p => p.Id == id).First();
 
             var theLongestComment = post.Comments.OrderByDescending(comment => comment.Body.Length).First();
 
