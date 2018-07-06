@@ -1,0 +1,58 @@
+﻿@model Nullable<ValueTuple<User, Post, int?, int, Post, Post>>
+
+@{
+    ViewData["Title"] = "Task5Result";
+}
+
+<h2>Task5Result</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User
+            </th>
+            <th>
+                LastPost
+            </th>
+            <th>
+                Number of comments under last post
+            </th>
+            <th>
+                Number of undone task 
+            </th>
+            <th>
+                The most popular post(by comments)
+            </th>
+            <th>
+                The most popular post(by likes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a asp-action="GetUser"
+                   asp-route-id="@Model.Value.Item1.Id">@Html.DisplayFor(modelItem => @Model.Value.Item1.Name)</a>
+            </td>
+            <td>
+                <a asp-action="GetPost"
+                   asp-route-id="@(Model.Value.Item2?.Id)">@(Model.Value.Item2?.Title) </a>
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Value.Item3)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Value.Item4)
+            </td>
+            <td>
+                <a asp-action="GetPost"
+                   asp-route-id="@(Model.Value.Item5?.Id)">@(Model.Value.Item5?.Title)</a>
+            </td>
+            <td>
+                <a asp-action="GetPost"
+                   asp-route-id="@(Model.Value.Item6?.Id)">@(Model.Value.Item6?.Title)</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

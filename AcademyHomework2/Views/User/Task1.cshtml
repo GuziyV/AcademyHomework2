@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Task1";
+}
+
+<h2>Task1</h2>
+<h4>Получить количество комментов под постами конкретного пользователя (по айди) (список из пост-количество)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Task1">
+            <div class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Please, enter user's id:</label>
+                <div class= "text-danger">@ViewBag.Error</div>
+                <input name= "id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

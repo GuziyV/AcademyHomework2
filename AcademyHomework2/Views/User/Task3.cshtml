@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Task3";
+}
+
+<h2>Task3</h2>
+<h4>Получить список (id, name) из списка todos которые выполнены для конкретного пользователя (по айди)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Task3">
+            <div class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Please, enter user's id:</label>
+                <div class="text-danger">@ViewBag.Error</div>
+                <input name="id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

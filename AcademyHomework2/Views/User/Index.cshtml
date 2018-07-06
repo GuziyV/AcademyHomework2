@@ -1,0 +1,27 @@
+﻿@model IEnumerable<AcademyHomework2.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var user in Model) {
+        <tr>
+            <td>
+                <a asp-action="GetUser"
+                   asp-route-id="@user.Id">@Html.DisplayFor(modelItem => user.Name)</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

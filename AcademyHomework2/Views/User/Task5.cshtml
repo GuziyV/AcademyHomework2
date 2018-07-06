@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Task5";
+}
+
+<h2>Task5</h2>
+<h4>Получить следующую структуру (передать Id пользователя в параметры):</h4>
+<ul>
+    <li>User</li>
+    <li>Последний пост пользователя (по дате)</li>
+    <li>Количество комментов под последним постом</li>
+    <li>Количество невыполненных тасков для пользователя</li>
+    <li>Самый популярный пост пользователя (там где больше всего комментов с длиной текста больше 80 символов)</li>
+    <li>Самый популярный пост пользователя (там где больше всего лайков)</li>
+</ul>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Task5">
+            <div class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Please, enter user's id:</label>
+                <div class="text-danger">@ViewBag.Error</div>
+                <input name="id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input  type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
