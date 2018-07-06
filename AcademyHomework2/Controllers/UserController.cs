@@ -22,42 +22,96 @@ namespace AcademyHomework2.Controllers
             var users = userService.GetAll();
             return View(users);
         }
-
         //GET: User/Task1
         public IActionResult Task1()
         {
-            var users = userService.GetAll();
-            return View(users);
+            return View();
+        }
+        //POST: User/Task1
+        [HttpPost]
+        public IActionResult Task1(int id)
+        {
+            var query = userService.GetNumberOfCommentsById(id);
+            if(query == null)
+            {
+                ViewBag.Error = "User wasn't found";
+                return View();
+            }
+            return View("Task1Result", query);
         }
         //GET: User/Task2
         public IActionResult Task2()
         {
-            var users = userService.GetAll();
-            return View(users);
+            return View();
+        }
+        //POST: User/Task2
+        [HttpPost]
+        public IActionResult Task2(int id)
+        {
+            var query = userService.GetCommentsWithSmallBodyById(id);
+            if (query == null)
+            {
+                ViewBag.Error = "User wasn't found";
+                return View();
+            }
+            return View("Task2Result", query);
         }
         //GET: User/Task3
         public IActionResult Task3()
         {
-            var users = userService.GetAll();
-            return View(users);
+            return View();
+        }
+        //POST: User/Task3
+        [HttpPost]
+        public IActionResult Task3(int id)
+        {
+            var tasks = userService.GetCompletedTasksById(id);
+            if(tasks == null)
+            {
+                ViewBag.Error = "User wasn't found";
+                return View();
+            }
+            return View("Task3Result", tasks);
         }
         //GET: User/Task4
         public IActionResult Task4()
         {
-            var users = userService.GetAll();
+            var users = userService.GetSortedUsers();
             return View(users);
         }
         //GET: User/Task5
         public IActionResult Task5()
         {
-            var users = userService.GetAll();
-            return View(users);
+            return View();
+        }
+        //POST: User/Task5
+        [HttpPost]
+        public IActionResult Task5(int id)
+        {
+            var structure = userService.GetFirstStructure(id);
+            if(structure == null) //if user wasn't found
+            {
+                ViewBag.Error = "User wasn't found";
+                return View();
+            }
+            return View("Task5Result", structure);
         }
         //GET: User/Task6
         public IActionResult Task6()
         {
-            var users = userService.GetAll();
-            return View(users);
+            return View();
+        }
+        //POST: User/Task6
+        [HttpPost]
+        public IActionResult Task6(int id)
+        {
+            var structure = userService.GetSecondStructure(id);
+            if(structure == null) //If user wasn't found
+            {
+                ViewBag.Error = "Post wasn't found";
+                return View();
+            }
+            return View("Task6Result", structure);
         }
     }
 }

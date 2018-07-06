@@ -1,0 +1,26 @@
+﻿@model IEnumerable<AcademyHomework2.Models.Comment>
+
+@{
+    ViewData["Title"] = "Task2Result";
+}
+
+<h2>Task2Result</h2>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Comment
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var comment in Model) {
+        <tr>
+            <td>
+                <a asp-action="GetComment"
+                   asp-route-id="@comment.Id">@Html.DisplayFor(modelItem => comment.Body)</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

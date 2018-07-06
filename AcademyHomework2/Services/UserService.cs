@@ -109,13 +109,18 @@ namespace AcademyHomework2.Services
         {
             var posts = (from u in _users
                          where u.Id == id
-                         select u.Posts).First();
+                         select u.Posts).FirstOrDefault();
             return posts;
         }
 
         public IEnumerable<(Post, int)> GetNumberOfCommentsById(int id)
         {
             var posts = GetPostsById(id);
+
+            if(posts == null)
+            {
+                return null;
+            }
 
             var postsWithNumber = from p in posts
                                   select (Post: p, Number: p.Comments.Count());
@@ -127,6 +132,11 @@ namespace AcademyHomework2.Services
         {
             var posts = GetPostsById(id);
 
+            if(posts == null)
+            {
+                return null;
+            }
+
             var smallComments = posts.SelectMany(post => post.Comments).Where(comment => comment.Body.Length < 50);
 
             return smallComments;
@@ -135,7 +145,12 @@ namespace AcademyHomework2.Services
         {
             var todos = (from u in _users
                          where u.Id == id
-                         select u.Todos).First();
+                         select u.Todos).FirstOrDefault();
+
+            if(todos == null)
+            {
+                return null;
+            }
 
 
             var completed = from todo in todos
@@ -164,9 +179,14 @@ namespace AcademyHomework2.Services
             return sortedUsers;
         }
 
-        public (User, Post, int?, int, Post, Post) GetFirstStructure(int id)
+        public (User, Post, int?, int, Post, Post)? GetFirstStructure(int id)
         {
-            var user = _users.Where(u => u.Id == id).First();
+            var user = _users.Where(u => u.Id == id).FirstOrDefault();
+
+            if (user == null)
+            {
+                return null;
+            }
 
             var lastPost = user.Posts.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
 
@@ -184,20 +204,25 @@ namespace AcademyHomework2.Services
             else
             {
                 var mostPopularComments = user.Posts.
-                    OrderByDescending(post => post.Comments.Where(comment => comment.Body.Length > 80).Count()).First();
+                    OrderByDescending(post => post.Comments.Where(comment => comment.Body.Length > 80).Count()).FirstOrDefault();
 
-                var mostPopularLikes = user.Posts.OrderByDescending(post => post.Likes).First();
+                var mostPopularLikes = user.Posts.OrderByDescending(post => post.Likes).FirstOrDefault();
                 return (user, lastPost, numberOfComments, numberOfNotDone, mostPopularComments, mostPopularLikes);
             }
         }
 
-        public (Post, Comment, Comment, int?) GetSecondStructure(int id)
+        public (Post, Comment, Comment, int?)? GetSecondStructure(int id)
         {
-            var post = _users.SelectMany(u => u.Posts).Where(p => p.Id == id).First();
+            var post = _users.SelectMany(u => u.Posts).Where(p => p.Id == id).FirstOrDefault();
 
-            var theLongestComment = post.Comments.OrderByDescending(comment => comment.Body.Length).First();
+            if(post == null)
+            {
+                return null;
+            }
 
-            var theLikestComment = post.Comments.OrderByDescending(comment => comment.Likes).First();
+            var theLongestComment = post.Comments.OrderByDescending(comment => comment.Body.Length).FirstOrDefault();
+
+            var theLikestComment = post.Comments.OrderByDescending(comment => comment.Likes).FirstOrDefault();
 
             int? numberOfComments = post?.Comments.Where(comment => (comment.Likes == 0 || comment.Body.Length > 80))
                 .Count();
