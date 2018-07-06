@@ -113,5 +113,35 @@ namespace AcademyHomework2.Controllers
             }
             return View("Task6Result", structure);
         }
+
+        public IActionResult GetUser(int id)
+        {
+            var user = userService.GetUserById(id);
+            if(user == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
+        public IActionResult GetPost(int id)
+        {
+            var post = userService.GetPostById(id);
+            if (post == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(post);
+        }
+
+        public IActionResult GetTodo(int id)
+        {
+            var todo = userService.GetTodoById(id);
+            if (todo == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(todo);
+        }
     }
 }

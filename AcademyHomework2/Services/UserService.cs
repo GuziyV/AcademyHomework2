@@ -105,7 +105,19 @@ namespace AcademyHomework2.Services
             }
         }
 
-        private IEnumerable<Post> GetPostsById(int id)
+        public Post GetPostById(int id)
+        {
+            var post = _users.SelectMany(user => user.Posts).Where(p => p.Id == id).FirstOrDefault();
+            return post;
+        }
+
+        public Todo GetTodoById(int id)
+        {
+            var todo = _users.SelectMany(user => user.Todos).Where(t => t.Id == id).FirstOrDefault();
+            return todo;
+        }
+
+        private IEnumerable<Post> GetPostsByUserId(int id)
         {
             var posts = (from u in _users
                          where u.Id == id
@@ -115,7 +127,7 @@ namespace AcademyHomework2.Services
 
         public IEnumerable<(Post, int)> GetNumberOfCommentsById(int id)
         {
-            var posts = GetPostsById(id);
+            var posts = GetPostsByUserId(id);
 
             if(posts == null)
             {
@@ -130,7 +142,7 @@ namespace AcademyHomework2.Services
 
         public IEnumerable<Comment> GetCommentsWithSmallBodyById(int id)
         {
-            var posts = GetPostsById(id);
+            var posts = GetPostsByUserId(id);
 
             if(posts == null)
             {
@@ -209,6 +221,12 @@ namespace AcademyHomework2.Services
                 var mostPopularLikes = user.Posts.OrderByDescending(post => post.Likes).FirstOrDefault();
                 return (user, lastPost, numberOfComments, numberOfNotDone, mostPopularComments, mostPopularLikes);
             }
+        }
+
+        public User GetUserById(int id)
+        {
+            var user = _users.Where(u => u.Id == id).FirstOrDefault();
+            return user;
         }
 
         public (Post, Comment, Comment, int?)? GetSecondStructure(int id)
