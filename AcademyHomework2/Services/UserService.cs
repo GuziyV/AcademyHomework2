@@ -113,7 +113,7 @@ namespace AcademyHomework2.Services
 
         public Todo GetTodoById(int id)
         {
-            var todo = _users.SelectMany(user => user.Todos).Where(t => t.Id == id).FirstOrDefault();
+            var todo = _users.SelectMany(user => user.Todos).FirstOrDefault(t => t.Id == id);
             return todo;
         }
 
@@ -193,7 +193,7 @@ namespace AcademyHomework2.Services
 
         public (User, Post, int?, int, Post, Post)? GetFirstStructure(int id)
         {
-            var user = _users.Where(u => u.Id == id).FirstOrDefault();
+            var user = _users.FirstOrDefault(u => u.Id == id);
 
             if (user == null)
             {
@@ -231,7 +231,7 @@ namespace AcademyHomework2.Services
 
         public (Post, Comment, Comment, int?)? GetSecondStructure(int id)
         {
-            var post = _users.SelectMany(u => u.Posts).Where(p => p.Id == id).FirstOrDefault();
+            var post = _users.SelectMany(u => u.Posts).FirstOrDefault(p => p.Id == id);
 
             if(post == null)
             {

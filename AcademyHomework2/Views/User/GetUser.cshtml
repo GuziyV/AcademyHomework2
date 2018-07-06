@@ -4,5 +4,59 @@
     ViewData["Title"] = "GetUser";
 }
 
+<div class="container infoContainer">
+    <div class="row">
+        <h3 class="col-md-3">@Html.DisplayFor(Model => Model.Name)</h3>
+        <div class="col-md-5"> 
+            <div id="registerDate">Registered: @Html.DisplayFor(Model => Model.CreatedAt)</div>
+            <div>Email: @Html.DisplayFor(Model => Model.Email)</div>
+        </div>
+        <img id="avatar" class="col-md-4" src="@Html.DisplayFor(Model => Model.Avatar)" alt="img is not available"/>
+    </div>
+    <div class="row buttonsContainer">
+        <div class="col-md-6">
+            <button class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" data-target="#showTodos" >Get Tasks</button>
+            <div id="showTodos" class="collapse">
+                @if (Model.Todos.Count == 0)
+                {
+                    <div>This user hasn't tasks</div>
+                }
+                else
+                {
+                <ul>
+                    @foreach (var todo in Model.Todos)
+                    {
+                    <li>
+                        <a asp-action="GetTodo"
+                            asp-route-id="@todo.Id">@todo.Name</a>
+                    </li>
+                    }
+                </ul>
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" data-target="#showPosts">Get Posts</button>
+            <div id="showPosts" class="collapse">
+                @if (Model.Posts.Count == 0)
+                {
+                    <div>This user hasn't posts</div>
+                }
+                else
+                {
+                <ul>
+                    @foreach (var post in Model.Posts)
+                    {
+                    <li>
+                        <a asp-action="GetPost"
+                            asp-route-id="@post.Id">@post.Title</a>
+                    </li>
+                    }
+                </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
-<h3>@Html.DisplayFor(Model => Model.Name)</h3>
+    

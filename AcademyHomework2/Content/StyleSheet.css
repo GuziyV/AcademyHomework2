@@ -1,0 +1,20 @@
+﻿body {
+    
+}
+
+.infoContainer{
+     margin-top: 25px;
+}
+
+.buttonsContainer{
+    margin-top: 35px;
+}
+
+#registerDate{
+    color:grey;
+}
+
+#avatar {
+    width: 15%;
+    height: 15%;
+}
