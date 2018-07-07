@@ -4,24 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h3>All Users</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                User
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var user in Model) {
-        <tr>
-            <td>
-                <a asp-action="GetUser"
-                   asp-route-id="@user.Id">@Html.DisplayFor(modelItem => user.Name)</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container" id="allUsersContainer">
+    @foreach (var user in Model)
+    {
+    <div class="row" id="userProfile">
+        <div class="col-md-3">
+            <a id="allUserName" asp-action="GetUser" asp-route-id="@user.Id">
+                @user.Name
+            </a>
+            <a id="allUserName" asp-action="GetUser" asp-route-id="@user.Id">
+                <img class="avatar" id="allUsersAvatars" src="@user.Avatar" alt="img is not available" />
+            </a>
+        </div>
+        </div>
+    }
+</div>

@@ -31,6 +31,8 @@
     float: right;
     margin-left: 35px;
     font-size: 85%;
+    text-decoration: none;
+    color: grey;
 }
 
 #todoItem {
@@ -43,4 +45,20 @@
 
 #todoUser{
     margin-top:40px;
+}
+
+#userProfile{
+    background-color:beige;
+    margin: 20px;
+}
+
+#allUsersAvatars{
+    margin: 15px;
+}
+
+#allUserName {
+    font-size: 135%;
+    margin-left: 20px;
+    margin-top: 20px;
+    text-decoration: none;
 }
