@@ -2,6 +2,7 @@
     
 }
 
+
 .infoContainer{
      margin-top: 25px;
 }
@@ -50,15 +51,21 @@
 #userProfile{
     background-color:beige;
     margin: 20px;
+    padding: 10px;
 }
 
 #allUsersAvatars{
     margin: 15px;
 }
 
+
 #allUserName {
     font-size: 135%;
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 45px;
+    text-decoration: none;
+}
+
+#allTodo{
     text-decoration: none;
 }

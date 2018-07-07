@@ -17,20 +17,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var user in Model)
+                   @foreach (var user in Model)
                     {
                         <tr>
                             <td>
                                 <a asp-action="GetUser"
                                    asp-route-id="@user.Id">@Html.DisplayFor(modelItem => user.Name)</a>
-                                @if (user.Todos.Count != 0)
+                               @if (user.Todos.Count != 0)
                                 {
                                     <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#todos_@user.Id" aria-expanded="false" aria-controls="todos">
                                         Show todos
                                     </button>
                                     <table class="collapse table" id="todos_@user.Id">
 
-                                        @foreach (var todo in user.Todos)
+                                       @foreach (var todo in user.Todos)
                                         {
                                             <tr class="card card-body">
                                                 <td>

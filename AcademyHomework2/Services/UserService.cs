@@ -54,6 +54,16 @@ namespace AcademyHomework2.Services
             }
         }
 
+        public Dictionary<int, User> GetUserByCommentIdDict() //return user by commentId
+        {
+            var commentUsers = new Dictionary<int, User>();
+            foreach(var comment in _users.SelectMany(user => user.Posts.SelectMany(post => post.Comments)))
+            {
+                commentUsers[comment.Id] = GetUserById(comment.UserId);
+            }
+            return commentUsers;
+        }
+
         private IEnumerable<Post> GetAllPosts()
         {
         var postJoinComments = _JArrayPosts.GroupJoin(

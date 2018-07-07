@@ -21,6 +21,7 @@ namespace AcademyHomework2.Controllers
         public IActionResult Index()
         {
             var users = userService.GetAll();
+            ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
             return View(users);
         }
         //GET: User/Task1
@@ -57,12 +58,7 @@ namespace AcademyHomework2.Controllers
             }
             else
             {
-                Dictionary<int, User> commentUsers = new Dictionary<int, User>();
-                foreach (var comment in query)
-                {
-                    commentUsers[comment.Id] = userService.GetUserById(comment.UserId);
-                }
-                ViewBag.CommentUsers = commentUsers;
+                ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
                 return View("Task2Result", query);
             }
         }
@@ -144,12 +140,7 @@ namespace AcademyHomework2.Controllers
             else
             {
                 ViewBag.User = userService.GetUserById(post.UserId);
-                Dictionary<int, User> commentUsers = new Dictionary<int, User>();
-                foreach(var comment in post.Comments)
-                {
-                    commentUsers[comment.Id] = userService.GetUserById(comment.UserId);
-                }
-                ViewBag.CommentUsers = commentUsers;
+                ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
                 return View(post);
             }
         }
