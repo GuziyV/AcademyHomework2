@@ -12,9 +12,26 @@
 
 #registerDate{
     color:grey;
+    margin-bottom: 30px;
+    font-size: 85%;
 }
 
 #avatar {
     width: 15%;
     height: 15%;
+}
+
+.likes {
+    font-size: 85%;
+    float: right;
+}
+
+.date {
+    float: right;
+    margin-left: 35px;
+    font-size: 85%;
+}
+
+#todoItem {
+    font-size: 85%;
 }

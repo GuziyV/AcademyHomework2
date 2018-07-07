@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AcademyHomework2.Services;
+using AcademyHomework2.Models;
 
 namespace AcademyHomework2.Controllers
 {
@@ -54,7 +55,16 @@ namespace AcademyHomework2.Controllers
                 ViewBag.Error = "User wasn't found";
                 return View();
             }
-            return View("Task2Result", query);
+            else
+            {
+                Dictionary<int, User> commentUsers = new Dictionary<int, User>();
+                foreach (var comment in query)
+                {
+                    commentUsers[comment.Id] = userService.GetUserById(comment.UserId);
+                }
+                ViewBag.CommentUsers = commentUsers;
+                return View("Task2Result", query);
+            }
         }
         //GET: User/Task3
         public IActionResult Task3()
@@ -131,7 +141,17 @@ namespace AcademyHomework2.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(post);
+            else
+            {
+                ViewBag.User = userService.GetUserById(post.UserId);
+                Dictionary<int, User> commentUsers = new Dictionary<int, User>();
+                foreach(var comment in post.Comments)
+                {
+                    commentUsers[comment.Id] = userService.GetUserById(comment.UserId);
+                }
+                ViewBag.CommentUsers = commentUsers;
+                return View(post);
+            }
         }
 
         public IActionResult GetTodo(int id)

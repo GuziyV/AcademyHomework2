@@ -4,42 +4,48 @@
     ViewData["Title"] = "Task4";
 }
 
-<h2>Task4</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                User
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var user in Model) {
-        <tr>
-            <td>
-                <a asp-action="GetUser"
-                   asp-route-id="@user.Id">@Html.DisplayFor(modelItem => user.Name)</a>
-                @if (user.Todos.Count != 0)
-                {
-                <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#todos_@user.Id" aria-expanded="false" aria-controls="todos">
-                    Show todos
-                </button>
-                <table class="collapse table" id="todos_@user.Id">
-
-                        @foreach (var todo in user.Todos)
-                        {
-                        <tr class="card card-body">
+<h2>Task 4</h2>
+<div class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            User
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
                             <td>
-                                <a asp-action="GetTodo"
-                                   asp-route-id="@todo.Id">@todo.Name</a>
+                                <a asp-action="GetUser"
+                                   asp-route-id="@user.Id">@Html.DisplayFor(modelItem => user.Name)</a>
+                                @if (user.Todos.Count != 0)
+                                {
+                                    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#todos_@user.Id" aria-expanded="false" aria-controls="todos">
+                                        Show todos
+                                    </button>
+                                    <table class="collapse table" id="todos_@user.Id">
+
+                                        @foreach (var todo in user.Todos)
+                                        {
+                                            <tr class="card card-body">
+                                                <td>
+                                                    <a asp-action="GetTodo" id="todoItem"
+                                                       asp-route-id="@todo.Id">@todo.Name</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
                             </td>
                         </tr>
-                        }
-                </table>
-                }
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
