@@ -2,25 +2,41 @@
 
 @{
     ViewData["Title"] = "Task2Result";
+    Dictionary<int, User> GetUserByCommentIdDict = ViewBag.GetUserByCommentIdDict;
 }
 
-<h2>Task2Result</h2>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    Comment
-                </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var comment in Model) {
-        <tr>
-            <td>
-                <a asp-action="GetComment"
-                   asp-route-id="@comment.Id">@Html.DisplayFor(modelItem => comment.Body)</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h2>Task 2 Result</h2>
+<div class="content">
+    <div class="row">
+        <div class="col-md-8">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Comment
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var comment in Model)
+                    {
+                    <tr>
+                        <td>
+                            <div id="comentAuthor">
+                                Author:
+                                <a asp-action="GetUser"
+                                    asp-route-id="@GetUserByCommentIdDict[comment.Id].Id">@GetUserByCommentIdDict[comment.Id].Name</a>
+                            </div>
+                            <div id="commentBody">
+                                @comment.Body
+                            </div>
+                            <span class="date">@comment.CreatedAt</span>
+                            <span class="likes">Likes: @comment.Likes</span>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

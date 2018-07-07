@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AcademyHomework2.Services;
+using AcademyHomework2.Models;
 
 namespace AcademyHomework2.Controllers
 {
@@ -20,6 +21,7 @@ namespace AcademyHomework2.Controllers
         public IActionResult Index()
         {
             var users = userService.GetAll();
+            ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
             return View(users);
         }
         //GET: User/Task1
@@ -54,7 +56,11 @@ namespace AcademyHomework2.Controllers
                 ViewBag.Error = "User wasn't found";
                 return View();
             }
-            return View("Task2Result", query);
+            else
+            {
+                ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
+                return View("Task2Result", query);
+            }
         }
         //GET: User/Task3
         public IActionResult Task3()
@@ -114,6 +120,7 @@ namespace AcademyHomework2.Controllers
             return View("Task6Result", structure);
         }
 
+        //GET: User/GetUser/{id}
         public IActionResult GetUser(int id)
         {
             var user = userService.GetUserById(id);
@@ -124,6 +131,7 @@ namespace AcademyHomework2.Controllers
             return View(user);
         }
 
+        //GET: User/GetPost/{id}
         public IActionResult GetPost(int id)
         {
             var post = userService.GetPostById(id);
@@ -131,9 +139,15 @@ namespace AcademyHomework2.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(post);
+            else
+            {
+                ViewBag.User = userService.GetUserById(post.UserId);
+                ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
+                return View(post);
+            }
         }
 
+        //GET: User/GetTodo/{id}
         public IActionResult GetTodo(int id)
         {
             var todo = userService.GetTodoById(id);
@@ -141,7 +155,11 @@ namespace AcademyHomework2.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(todo);
+            else
+            {
+                ViewBag.User = userService.GetUserById(todo.UserId);
+                return View(todo);
+            }
         }
     }
 }

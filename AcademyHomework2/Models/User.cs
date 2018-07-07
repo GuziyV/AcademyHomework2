@@ -20,7 +20,8 @@ namespace AcademyHomework2.Models
         [Required]
         public string Email { get; set; }
         [Required]
-        public List<Post> Posts { get; set; } 
+        public List<Post> Posts { get; set; }
+        [Required]
         public List<Todo> Todos { get; set; } 
 
         public void ShowTodos()

@@ -4,31 +4,37 @@
     ViewData["Title"] = "Task3Result";
 }
 
-<h2>Task3Result</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Name
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var todo in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => todo.Item1)
-            </td>
-            <td>
-                <a asp-action="GetTodo"
-                   asp-route-id="@todo.Item1">@Html.DisplayFor(modelItem => todo.Item2)</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h2>Task 3 Result</h2>
+<div class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead class="row">
+                    <tr>
+                        <th class="col-md-2">
+                            Id
+                        </th>
+                        <th class="col-md-4">
+                            Name
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var todo in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => todo.Item1)
+                            </td>
+                            <td>
+                                <a asp-action="GetTodo"
+                                   asp-route-id="@todo.Item1">@Html.DisplayFor(modelItem => todo.Item2)</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

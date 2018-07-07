@@ -52,6 +52,22 @@ namespace AcademyHomework2.Services
                     });
                 _users = usersJoinTodo.ToList();
             }
+            if(_getUserByCommentId == null)
+            {
+                var commentUsers = new Dictionary<int, User>();
+                foreach (var comment in _users.SelectMany(user => user.Posts.SelectMany(post => post.Comments)))
+                {
+                    commentUsers[comment.Id] = GetUserById(comment.UserId);
+                }
+                _getUserByCommentId = commentUsers;
+            }
+        }
+
+        private Dictionary<int, User> _getUserByCommentId;
+
+        public Dictionary<int, User> GetUserByCommentIdDict() //return user by commentId
+        {
+            return _getUserByCommentId;
         }
 
         private IEnumerable<Post> GetAllPosts()
@@ -113,7 +129,7 @@ namespace AcademyHomework2.Services
 
         public Todo GetTodoById(int id)
         {
-            var todo = _users.SelectMany(user => user.Todos).Where(t => t.Id == id).FirstOrDefault();
+            var todo = _users.SelectMany(user => user.Todos).FirstOrDefault(t => t.Id == id);
             return todo;
         }
 
@@ -193,7 +209,7 @@ namespace AcademyHomework2.Services
 
         public (User, Post, int?, int, Post, Post)? GetFirstStructure(int id)
         {
-            var user = _users.Where(u => u.Id == id).FirstOrDefault();
+            var user = _users.FirstOrDefault(u => u.Id == id);
 
             if (user == null)
             {
@@ -231,7 +247,7 @@ namespace AcademyHomework2.Services
 
         public (Post, Comment, Comment, int?)? GetSecondStructure(int id)
         {
-            var post = _users.SelectMany(u => u.Posts).Where(p => p.Id == id).FirstOrDefault();
+            var post = _users.SelectMany(u => u.Posts).FirstOrDefault(p => p.Id == id);
 
             if(post == null)
             {

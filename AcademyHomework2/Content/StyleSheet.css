@@ -1,0 +1,71 @@
+﻿body {
+    
+}
+
+
+.infoContainer{
+     margin-top: 25px;
+}
+
+.buttonsContainer{
+    margin-top: 35px;
+}
+
+#registerDate{
+    margin-top:30px;
+    color:grey;
+    margin-bottom: 30px;
+    font-size: 85%;
+}
+
+#avatar {
+    width: 15%;
+    height: 15%;
+}
+
+.likes {
+    font-size: 85%;
+    float: right;
+}
+
+.date {
+    float: right;
+    margin-left: 35px;
+    font-size: 85%;
+    text-decoration: none;
+    color: grey;
+}
+
+#todoItem {
+    font-size: 85%;
+}
+
+#todoName{
+    font-size:150%;
+}
+
+#todoUser{
+    margin-top:40px;
+}
+
+#userProfile{
+    background-color:beige;
+    margin: 20px;
+    padding: 10px;
+}
+
+#allUsersAvatars{
+    margin: 15px;
+}
+
+
+#allUserName {
+    font-size: 135%;
+    margin-left: 20px;
+    margin-top: 45px;
+    text-decoration: none;
+}
+
+#allTodo{
+    text-decoration: none;
+}
