@@ -5,6 +5,7 @@
 }
 
 <h2>Task 4</h2>
+<h4>Получить список пользователей по алфавиту (по возрастанию) с отсортированными todo items по длине name (по убыванию)</h4>
 <div class="content">
     <div class="row">
         <div class="col-md-3">
@@ -25,21 +26,21 @@
                                    asp-route-id="@user.Id">@Html.DisplayFor(modelItem => user.Name)</a>
                                @if (user.Todos.Count != 0)
                                 {
-                                    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#todos_@user.Id" aria-expanded="false" aria-controls="todos">
-                                        Show todos
-                                    </button>
-                                    <table class="collapse table" id="todos_@user.Id">
+                                <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#todos_@user.Id" aria-expanded="false" aria-controls="todos">
+                                    Show todos
+                                </button>
+                                <table class="collapse table" id="todos_@user.Id">
 
-                                       @foreach (var todo in user.Todos)
-                                        {
-                                            <tr class="card card-body">
-                                                <td>
-                                                    <a asp-action="GetTodo" id="todoItem"
-                                                       asp-route-id="@todo.Id">@todo.Name</a>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </table>
+                                    @foreach (var todo in user.Todos)
+                                    {
+                                        <tr class="card card-body">
+                                            <td>
+                                                <a asp-action="GetTodo" id="todoItem"
+                                                    asp-route-id="@todo.Id">@todo.Name</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
                                 }
                             </td>
                         </tr>

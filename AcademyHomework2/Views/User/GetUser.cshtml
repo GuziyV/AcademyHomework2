@@ -17,14 +17,14 @@
         <div class="col-md-6">
             <button class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" data-target="#showTodos" >Get Tasks</button>
             <div id="showTodos" class="collapse">
-                @if (Model.Todos.Count == 0)
+               @if (Model.Todos.Count == 0)
                 {
                     <div>This user hasn't tasks</div>
                 }
                 else
                 {
                 <ul>
-                    @foreach (var todo in Model.Todos)
+                   @foreach (var todo in Model.Todos)
                     {
                     <li>
                         <a asp-action="GetTodo"
@@ -38,14 +38,14 @@
         <div class="col-md-6">
             <button class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" data-target="#showPosts">Get Posts</button>
             <div id="showPosts" class="collapse">
-                @if (Model.Posts.Count == 0)
+               @if (Model.Posts.Count == 0)
                 {
                     <div>This user hasn't posts</div>
                 }
                 else
                 {
                 <ul>
-                    @foreach (var post in Model.Posts)
+                   @foreach (var post in Model.Posts)
                     {
                     <li>
                         <a asp-action="GetPost"

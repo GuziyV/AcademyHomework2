@@ -52,16 +52,22 @@ namespace AcademyHomework2.Services
                     });
                 _users = usersJoinTodo.ToList();
             }
+            if(_getUserByCommentId == null)
+            {
+                var commentUsers = new Dictionary<int, User>();
+                foreach (var comment in _users.SelectMany(user => user.Posts.SelectMany(post => post.Comments)))
+                {
+                    commentUsers[comment.Id] = GetUserById(comment.UserId);
+                }
+                _getUserByCommentId = commentUsers;
+            }
         }
+
+        private Dictionary<int, User> _getUserByCommentId;
 
         public Dictionary<int, User> GetUserByCommentIdDict() //return user by commentId
         {
-            var commentUsers = new Dictionary<int, User>();
-            foreach(var comment in _users.SelectMany(user => user.Posts.SelectMany(post => post.Comments)))
-            {
-                commentUsers[comment.Id] = GetUserById(comment.UserId);
-            }
-            return commentUsers;
+            return _getUserByCommentId;
         }
 
         private IEnumerable<Post> GetAllPosts()

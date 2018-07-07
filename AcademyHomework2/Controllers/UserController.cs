@@ -120,6 +120,7 @@ namespace AcademyHomework2.Controllers
             return View("Task6Result", structure);
         }
 
+        //GET: User/GetUser/{id}
         public IActionResult GetUser(int id)
         {
             var user = userService.GetUserById(id);
@@ -130,6 +131,7 @@ namespace AcademyHomework2.Controllers
             return View(user);
         }
 
+        //GET: User/GetPost/{id}
         public IActionResult GetPost(int id)
         {
             var post = userService.GetPostById(id);
@@ -145,6 +147,7 @@ namespace AcademyHomework2.Controllers
             }
         }
 
+        //GET: User/GetTodo/{id}
         public IActionResult GetTodo(int id)
         {
             var todo = userService.GetTodoById(id);
