@@ -4,7 +4,7 @@
 
 #### Default action: Index
 
-localhost:3033/User/index - Get all users
+http://localhost:3033/User/index - Get all users
 
 http://localhost:3033/User/GetUser/{id} - Get user by id
 
