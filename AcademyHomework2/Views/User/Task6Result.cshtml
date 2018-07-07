@@ -1,0 +1,45 @@
+﻿@model Nullable<ValueTuple<Post, Comment, Comment, int?>>
+
+@{
+    ViewData["Title"] = "Task5Result";
+}
+
+<h2>Task 6 Result</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Post
+            </th>
+            <th>
+                The longest comment
+            </th>
+            <th>
+                The likest comment
+            </th>
+            <th>
+                Number of comments under post where 0 likes or lengths > 80
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a asp-action="GetPost"
+                   asp-route-id="@Model.Value.Item1.Id">@Html.DisplayFor(modelItem => @Model.Value.Item1.Title)</a>
+            </td>
+            <td>
+                <a asp-action="GetComment"
+                   asp-route-id="@Model.Value.Item2?.Id">@Model.Value.Item2?.Body</a>
+            </td>
+            <td>
+                <a asp-action="GetComment"
+                   asp-route-id="@Model.Value.Item3?.Id">@Model.Value.Item3?.Body</a>
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Value.Item4)
+            </td>
+        </tr>
+    </tbody>
+</table>

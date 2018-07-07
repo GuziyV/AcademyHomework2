@@ -1,0 +1,23 @@
+﻿@model AcademyHomework2.Models.Todo
+
+@{
+    ViewData["Title"] = "GetTodo";
+    string color = Model.IsComplete ? "green" : "red";
+    string todoStatus = Model.IsComplete ? "(completed)" : "(not completed)";
+    User user = ViewBag.User;
+}
+<div class="container infoContainer">
+    <div class="row">
+        <div class="col-md-6">
+            <div style="color: @color">
+                <span id="todoName">@Html.DisplayFor(Model => Model.Name)</span>
+                <span id="todoStatus">@todoStatus</span>
+            </div>
+            <div id="todoUser">
+                User: <a asp-action="GetUser"
+                         asp-route-id="@user.Id">@user.Name</a>
+            </div>
+        </div>
+        <div class="date">@Html.DisplayFor(Model => Model.CreatedAt)</div>
+    </div>
+</div>

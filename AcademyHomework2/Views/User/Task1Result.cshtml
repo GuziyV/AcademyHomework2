@@ -1,0 +1,39 @@
+﻿@model IEnumerable<(Post, int)>
+
+@{
+    ViewData["Title"] = "Task1Result";
+}
+
+<h2>Task 1 Result</h2>
+<div class="content">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead class="row">
+                    <tr>
+                        <th class="col-md-6">
+                            Post
+                        </th>
+                        <th class="col-md-2">
+                            Number of comments
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var post in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="GetPost"
+                                   asp-route-id="@post.Item1.Id">@Html.DisplayFor(modelItem => post.Item1.Title)</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => post.Item2)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
