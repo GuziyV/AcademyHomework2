@@ -161,7 +161,11 @@ namespace AcademyHomework2.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(todo);
+            else
+            {
+                ViewBag.User = userService.GetUserById(todo.UserId);
+                return View(todo);
+            }
         }
     }
 }

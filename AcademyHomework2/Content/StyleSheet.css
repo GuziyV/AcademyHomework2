@@ -11,6 +11,7 @@
 }
 
 #registerDate{
+    margin-top:30px;
     color:grey;
     margin-bottom: 30px;
     font-size: 85%;
@@ -34,4 +35,12 @@
 
 #todoItem {
     font-size: 85%;
+}
+
+#todoName{
+    font-size:150%;
+}
+
+#todoUser{
+    margin-top:40px;
 }
