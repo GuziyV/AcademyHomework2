@@ -26,16 +26,15 @@
     <tbody>
         <tr>
             <td>
-                <a asp-action="GetPost"
+                <a asp-controller= "post"
+                   asp-action="getpost"
                    asp-route-id="@Model.Value.Item1.Id">@Html.DisplayFor(modelItem => @Model.Value.Item1.Title)</a>
             </td>
             <td>
-                <a asp-action="GetComment"
-                   asp-route-id="@Model.Value.Item2?.Id">@Model.Value.Item2?.Body</a>
+                <span>@Model.Value.Item2?.Body</span>
             </td>
             <td>
-                <a asp-action="GetComment"
-                   asp-route-id="@Model.Value.Item3?.Id">@Model.Value.Item3?.Body</a>
+                <span>@Model.Value.Item3?.Body</span>
             </td>
             <td>
                 @Html.DisplayFor(Model => Model.Value.Item4)

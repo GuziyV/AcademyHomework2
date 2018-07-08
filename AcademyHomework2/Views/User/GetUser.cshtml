@@ -27,8 +27,9 @@
                    @foreach (var todo in Model.Todos)
                     {
                     <li>
-                        <a asp-action="GetTodo"
-                            asp-route-id="@todo.Id">@todo.Name</a>
+                        <a asp-controller="todo"
+                           asp-action="gettodo"
+                           asp-route-id="@todo.Id">@todo.Name</a>
                     </li>
                     }
                 </ul>
@@ -48,8 +49,9 @@
                    @foreach (var post in Model.Posts)
                     {
                     <li>
-                        <a asp-action="GetPost"
-                            asp-route-id="@post.Id">@post.Title</a>
+                        <a asp-controller="post"
+                           asp-action="getpost"
+                           asp-route-id="@post.Id">@post.Title</a>
                     </li>
                     }
                 </ul>

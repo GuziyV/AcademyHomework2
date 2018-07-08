@@ -24,6 +24,18 @@ namespace AcademyHomework2.Controllers
             ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
             return View(users);
         }
+
+        //GET: User/User/{id}
+        public IActionResult GetUser(int id)
+        {
+            var user = userService.GetUserById(id);
+            if (user == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
         //GET: User/Task1
         public IActionResult Task1()
         {
@@ -118,48 +130,6 @@ namespace AcademyHomework2.Controllers
                 return View();
             }
             return View("Task6Result", structure);
-        }
-
-        //GET: User/GetUser/{id}
-        public IActionResult GetUser(int id)
-        {
-            var user = userService.GetUserById(id);
-            if(user == null)
-            {
-                return RedirectToAction("Index");
-            }
-            return View(user);
-        }
-
-        //GET: User/GetPost/{id}
-        public IActionResult GetPost(int id)
-        {
-            var post = userService.GetPostById(id);
-            if (post == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.User = userService.GetUserById(post.UserId);
-                ViewBag.GetUserByCommentIdDict = userService.GetUserByCommentIdDict();
-                return View(post);
-            }
-        }
-
-        //GET: User/GetTodo/{id}
-        public IActionResult GetTodo(int id)
-        {
-            var todo = userService.GetTodoById(id);
-            if (todo == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.User = userService.GetUserById(todo.UserId);
-                return View(todo);
-            }
         }
     }
 }

@@ -28,7 +28,8 @@
                                 @Html.DisplayFor(modelItem => todo.Item1)
                             </td>
                             <td>
-                                <a asp-action="GetTodo"
+                                <a asp-controller ="todo"
+                                   asp-action="gettodo"
                                    asp-route-id="@todo.Item1">@Html.DisplayFor(modelItem => todo.Item2)</a>
                             </td>
                         </tr>

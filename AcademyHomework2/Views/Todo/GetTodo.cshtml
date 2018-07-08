@@ -14,10 +14,11 @@
                 <span id="todoStatus">@todoStatus</span>
             </div>
             <div id="todoUser">
-                User: <a asp-action="GetUser"
+                User: <a asp-controller="user"
+                         asp-action="getuser"
                          asp-route-id="@user.Id">@user.Name</a>
+                    </div>
+                </div>
+                <div class="date">@Html.DisplayFor(Model => Model.CreatedAt)</div>
             </div>
         </div>
-        <div class="date">@Html.DisplayFor(Model => Model.CreatedAt)</div>
-    </div>
-</div>

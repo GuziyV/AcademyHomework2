@@ -32,12 +32,11 @@
     <tbody>
         <tr>
             <td>
-                <a asp-action="GetUser"
+                <a asp-action="getuser"
                    asp-route-id="@Model.Value.Item1.Id">@Html.DisplayFor(modelItem => @Model.Value.Item1.Name)</a>
             </td>
             <td>
-                <a asp-action="GetPost"
-                   asp-route-id="@(Model.Value.Item2?.Id)">@(Model.Value.Item2?.Title) </a>
+                <a asp-controller= "post" asp-action="getpost" asp-route-id="@(Model.Value.Item2?.Id)">@(Model.Value.Item2?.Title) </a>
             </td>
             <td>
                 @Html.DisplayFor(Model => Model.Value.Item3)
@@ -46,12 +45,10 @@
                 @Html.DisplayFor(Model => Model.Value.Item4)
             </td>
             <td>
-                <a asp-action="GetPost"
-                   asp-route-id="@(Model.Value.Item5?.Id)">@(Model.Value.Item5?.Title)</a>
+                <a asp-controller= "post" asp-action="getpost" asp-route-id="@(Model.Value.Item5?.Id)">@(Model.Value.Item5?.Title)</a>
             </td>
             <td>
-                <a asp-action="GetPost"
-                   asp-route-id="@(Model.Value.Item6?.Id)">@(Model.Value.Item6?.Title)</a>
+                <a asp-controller= "Post" asp-action="getpost" asp-route-id="@(Model.Value.Item6?.Id)">@(Model.Value.Item6?.Title)</a>
             </td>
         </tr>
     </tbody>

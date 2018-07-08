@@ -24,7 +24,8 @@
                     {
                         <tr>
                             <td>
-                                <a asp-action="GetPost"
+                                <a asp-controller="post"
+                                   asp-action="getpost"
                                    asp-route-id="@post.Item1.Id">@Html.DisplayFor(modelItem => post.Item1.Title)</a>
                             </td>
                             <td>
