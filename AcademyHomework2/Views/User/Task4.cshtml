@@ -22,7 +22,7 @@
                     {
                         <tr>
                             <td>
-                                <a asp-action="GetUser"
+                                <a asp-action="getuser"
                                    asp-route-id="@user.Id">@Html.DisplayFor(modelItem => user.Name)</a>
                                @if (user.Todos.Count != 0)
                                 {
@@ -35,8 +35,9 @@
                                     {
                                         <tr class="card card-body">
                                             <td>
-                                                <a asp-action="GetTodo" id="todoItem"
-                                                    asp-route-id="@todo.Id">@todo.Name</a>
+                                                <a asp-controller= "Todo" id="todoItem"
+                                                   asp-action="gettodo" 
+                                                   asp-route-id="@todo.Id">@todo.Name</a>
                                             </td>
                                         </tr>
                                     }
