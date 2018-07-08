@@ -16,7 +16,7 @@ namespace AcademyHomework2.Controllers
             userService = new UserService();
         }
 
-        //GET: Post/index/{id}
+        //GET: Post/getpost/{id}
         public IActionResult GetPost(int id)
         {
             var post = userService.GetPostById(id);
