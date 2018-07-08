@@ -25,7 +25,7 @@ namespace AcademyHomework2.Controllers
             return View(users);
         }
 
-        //GET: User/User/{id}
+        //GET: User/getuser/{id}
         public IActionResult GetUser(int id)
         {
             var user = userService.GetUserById(id);
