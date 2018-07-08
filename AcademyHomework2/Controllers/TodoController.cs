@@ -15,7 +15,7 @@ namespace AcademyHomework2.Controllers
         {
             userService = new UserService();
         }
-        //GET: User/GetTodo/{id}
+        //GET: todo/GetTodo/{id}
         public IActionResult GetTodo(int id)
         {
             var todo = userService.GetTodoById(id);
